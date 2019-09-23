@@ -3,7 +3,7 @@ package lambdasinaction._01lambda.functional.operator;
 import java.util.function.IntBinaryOperator;
 
 public class OperatorExample {
-	private static int[] scores = { 92, 95, 87 };
+	private static int[] scores = { 92, 95, 87, 15, 99, 52, 24, 87, 17};
 
 	public static int maxOrMin(IntBinaryOperator operator) {
 		int result = scores[0];
@@ -13,10 +13,16 @@ public class OperatorExample {
 		return result; }
 
 	public static void main(String[] args) {
-		// ÃÖ´ë°ª ¾ò±â
+		// ìµœëŒ€ê°’ ì–»ê¸°
+		int max = maxOrMin((a1, a2) -> {
+										 if(a1 >= a2) return a1;
+										 else return a2;
+								       });
 		
+		System.out.println(max);
 		
-		// ÃÖ¼Ò°ª ¾ò±â
-		
+		// ìµœì†Œê°’ ì–»ê¸°
+		int min = maxOrMin((a, b) -> a <= b ? a:b);
+		System.out.println(min);			
 	}
 }
