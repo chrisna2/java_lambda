@@ -17,3 +17,17 @@
 4. 참고 블로그 blog.naver.com/vega2k
 
 5. 자바람다와 최신기법 글의 첨부파일들을 폴더에 다운
+
+
+* * *
+
+Java : 
+	(arg1, arg2) -> body
+js : 
+	(arg1, arg2) => body
+python : 
+	lambda arg1, arg2 : body
+	
+
+
+

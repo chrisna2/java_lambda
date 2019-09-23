@@ -11,8 +11,22 @@ public class FilteringApples {
 							  new Apple(155, "green"), 
 							  new Apple(120, "red"));
 
-		//filter method ȣ��
+		//filter method 호출
+		List<Apple> redApples = filter(inventory, new ApplePredicate() {
+			//내부 클래스 생성
+			@Override
+			public boolean test(Apple a) {
+				// TODO Auto-generated method stub
+				return a.getColor().equals("red");
+			}
+		});
+		System.out.println(redApples);
 		
+		//람다식 형태로 호춣할 경우
+		List<Apple> greenApples = filter(inventory, apple -> apple.getColor().equals("green"));
+		System.out.println(greenApples);
+		
+   		
 	}
 
 	public static List<Apple> filterGreenApples(List<Apple> inventory) {
@@ -54,7 +68,8 @@ public class FilteringApples {
 		}
 		return result;
 	}
-
+	
+	@FunctionalInterface
 	interface ApplePredicate {
 		public boolean test(Apple a);
 	}
@@ -70,7 +85,7 @@ public class FilteringApples {
 			return "green".equals(apple.getColor());
 		}
 	}
-
+	//이런식으로 하다간 끝도 없을수가 있다. 조건이 추가될 때마다.
 	static class AppleRedAndHeavyPredicate implements ApplePredicate {
 		public boolean test(Apple apple) {
 			return "red".equals(apple.getColor()) && apple.getWeight() > 150;

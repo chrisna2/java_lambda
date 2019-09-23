@@ -11,16 +11,16 @@ public class FilteringApples{
                                               new Apple(155, "green"),
                                               new Apple(120, "red"));	
 
-        // ¶÷´Ù½Ä »ç¿ë [Apple{color='green', weight=80}, Apple{color='green', weight=155}]
+        // ëŒë‹¤ì‹ ì‚¬ìš© [Apple{color='green', weight=80}, Apple{color='green', weight=155}]
         
         
-        // ¶÷´Ù½Ä »ç¿ë[Apple{color='green', weight=155}]
+        // ëŒë‹¤ì‹ ì‚¬ìš©[Apple{color='green', weight=155}]
         
         
-        // Method Reference »ç¿ë [Apple{color='green', weight=80}, Apple{color='green', weight=155}]
+        // Method Reference ì‚¬ìš© [Apple{color='green', weight=80}, Apple{color='green', weight=155}]
         
         
-        // Method Reference »ç¿ë [Apple{color='green', weight=155}]
+        // Method Reference ì‚¬ìš© [Apple{color='green', weight=155}]
         
         
         // []
