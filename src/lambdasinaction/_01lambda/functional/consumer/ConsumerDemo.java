@@ -25,12 +25,12 @@ public class ConsumerDemo {
 		
 		
 		
-		//2. lambda expression
-
+		//2. lambda expression -> consumer
+		printAppleInfo(inventory, apple -> System.out.println(apple));
 		
 		
-		//3. Method Reference
-		
+		//3. Method Reference -> 메서드 레퍼런스 방식
+		printAppleInfo(inventory, System.out::println);
 	}
 	
     public static class Apple {
