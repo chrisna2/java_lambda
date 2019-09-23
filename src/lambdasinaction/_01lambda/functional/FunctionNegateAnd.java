@@ -14,10 +14,10 @@ public class FunctionNegateAnd {
 		inventory.add(new Apple(200, "red"));
 		inventory.add(new Apple(150, "red"));
 		
-		// Predicate ¼±¾ðÇÏ±â
+		// Predicate ì„ ì–¸í•˜ê¸°
 		Predicate<Apple> redApple = a -> a.getColor().equals("red");
-		// Predicate µÚÁý±â
-		Predicate<Apple> notRedApple = redApple.negate();
+		// Predicate ë’¤ì§‘ê¸°
+		Predicate<Apple> notRedApple = redApple.negate(); //ìœ„ì— ë°˜ëŒ€ì˜ ê²°ê³¼ê°€ ë‚˜ì˜´
 		// red & weight > 150
 		Predicate<Apple> redHeavyApple = redApple.and(a -> a.getWeight() > 150);
 
