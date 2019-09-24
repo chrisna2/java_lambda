@@ -53,7 +53,5 @@ public class _02Filtering {
     	
     	System.out.println(dishesSkip2);
 
-
-
     }
 }
