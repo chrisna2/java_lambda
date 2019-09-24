@@ -30,15 +30,28 @@ public class _02Filtering {
     	
         // 2. Filtering unique elements
     	List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 3, 2, 4);
-    	
-    	
+    	// 중복 제거
+    	numbers.stream()
+    		.distinct()
+    		.forEach(System.out::println);
 
         //3. Truncating 3 stream ( d.getCalories() > 300 )
-    	//List<Dish> dishesLimit3 = 
-    	
+    	//3개만 출력
+    	List<Dish> dishesLimit3 = Dish.menu.stream()
+    								.filter(d -> d.getCalories() > 300)
+    								//출력 결과 3개 제한
+    								.limit(3)
+    								.collect(toList());
+    	System.out.println(dishesLimit3);
 
         //4. Skipping elements
-    	//List<Dish> dishesSkip2 =
+    	List<Dish> dishesSkip2 = Dish.menu.stream()
+    								.filter(d -> d.getCalories() > 300)
+    								//앞에서 부터 3개씩 건너 뛴다.
+    								.skip(3)
+    								.collect(toList());
+    	
+    	System.out.println(dishesSkip2);
 
 
 
