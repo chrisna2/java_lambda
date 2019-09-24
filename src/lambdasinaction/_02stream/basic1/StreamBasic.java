@@ -16,10 +16,12 @@ public class StreamBasic {
         System.out.println("---");
 
         // Java 8
+        	// 낮은 칼로리 3개 출력
         getLowCaloricDishesNamesInJava8(Dish.menu).forEach(System.out::println);
-        
-        // 필터링된 자바
+        	// 필터링된 자바
         System.out.println(getGroupingMenu(Dish.menu));
+        	// 가장 칼로리가 높은 음식
+        System.out.println(getMaxCaloryDish(Dish.menu));
     }
 
     public static List<String> getLowCaloricDishesNamesInJava7(List<Dish> dishes){
@@ -74,9 +76,17 @@ public class StreamBasic {
     
  
     //가장 칼로리가 높은 메뉴를 찾아라
+    //칼로리중에서 최대값을 찾아라
     public static Dish getMaxCaloryDish (List<Dish> dishes) {
-    	return null;
-    	
-    	
-    }
+    	// 1. stream(): Strema<Dish>
+    	return dishes.stream()
+    			//2. max() : 최대값 구성
+    			.max(comparing(Dish::getCalories))
+    			//3. 값이 있던지 없던지 : optional
+    			.get();
+    			/*
+    			.max(Comparator.comparingInt(Dish::getCalories))
+    			.get();
+    			*/
+    }	
 }
