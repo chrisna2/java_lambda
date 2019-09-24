@@ -70,7 +70,7 @@ public class _01BuildingStreams {
                                  .flatMap(line -> Arrays.stream(line.split(" ")))
                                  .distinct()
                                  .count();
-
+         
          System.out.println("There are " + uniqueWords + " unique words in data2.txt");
 
 
