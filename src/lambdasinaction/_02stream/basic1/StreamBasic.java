@@ -15,8 +15,7 @@ public class StreamBasic {
         System.out.println("---");
 
         // Java 8
-
-
+        getLowCaloricDishesNamesInJava8(Dish.menu).forEach(System.out::println);
     }
 
     public static List<String> getLowCaloricDishesNamesInJava7(List<Dish> dishes){
@@ -43,11 +42,23 @@ public class StreamBasic {
 
     //Java 8
     public static List<String> getLowCaloricDishesNamesInJava8(List<Dish> dishes){
-        return null;
+        //1. stream() : Stream<Dish> : 무언가 흐르는 데이터를 처리한다는 느낌
+    	return dishes.stream()
+    				//필터링
+        		     .filter(dish -> dish.getCalories() <= 400)
+        		    //소팅 메서드 레퍼런스
+        		     .sorted(Comparator.comparing(Dish::getCalories))
+    				//map()
+    				 .map(Dish::getName)
+    				//리턴 타입 설정 : List<String> : collect(toList()) : List<String>
+    				 .collect(Collectors.toList())
+    				//개 중에 3개만 거른다.
+    				 .subList(0, 3);
     	
-    			
-    }
+    	
+    }				
     
+    //그룹핑 : RDB인 경우 이렇게 할 필요가 없다. 하지만  NoSql의 등장으로 이야기가 달라짐
     //400칼로리 이하인 메뉴를 다이어트로, 아닐 경우 일반으로 그룹핑해라.
     public static Map<String, List<Dish>>  getGroupingMenu(List<Dish> dishes){
     	return null;
