@@ -1,6 +1,7 @@
 package lambdasinaction._02stream.basic1;
 
 import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import static java.util.Comparator.comparing;
@@ -16,6 +17,9 @@ public class StreamBasic {
 
         // Java 8
         getLowCaloricDishesNamesInJava8(Dish.menu).forEach(System.out::println);
+        
+        // 필터링된 자바
+        System.out.println(getGroupingMenu(Dish.menu));
     }
 
     public static List<String> getLowCaloricDishesNamesInJava7(List<Dish> dishes){
@@ -61,8 +65,11 @@ public class StreamBasic {
     //그룹핑 : RDB인 경우 이렇게 할 필요가 없다. 하지만  NoSql의 등장으로 이야기가 달라짐
     //400칼로리 이하인 메뉴를 다이어트로, 아닐 경우 일반으로 그룹핑해라.
     public static Map<String, List<Dish>>  getGroupingMenu(List<Dish> dishes){
-    	return null;
- 
+    	return dishes.stream()
+    			.collect(Collectors.groupingBy(dish -> {
+    				if(dish.getCalories() <= 400) return "diet";
+    				else return "normal";
+    			}));
     }
     
  
