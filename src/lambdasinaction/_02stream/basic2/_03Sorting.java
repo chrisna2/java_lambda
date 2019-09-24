@@ -20,26 +20,33 @@ public class _03Sorting {
         // reshuffling things a little
         inventory.set(1, new Apple(30, "green"));
         
-        // 2. ���� anonymous inner class 
+        // 2. 구현  anonymous inner class 
         // [Apple{color='green', weight=30}, Apple{color='green', weight=80}, Apple{color='green', weight=155}]
-        
-        
-        
+        inventory.sort(new Comparator<Apple>() {
+			@Override
+			public int compare(Apple arg0, Apple arg1) {
+				return arg0.getWeight().compareTo(arg1.getWeight());
+			}
+		});
         System.out.println(inventory);
 
         // reshuffling things a little
         inventory.set(1, new Apple(20, "red"));
         
-        // 3. ���� lambda 
+        // 3. 구현 lambda 
         // [Apple{color='red', weight=20}, Apple{color='green', weight=30}, Apple{color='green', weight=155}]
-
+        inventory.sort(comparing(Apple::getWeight)); 
+        inventory.sort(comparing(apple -> apple.getWeight()));
+        inventory.sort((a1,a2) -> a1.getWeight().compareTo(a2.getWeight()));
+        //위에 3개 모두 다 잘된다. 
+        //가장 심플한 것을 고르면 된다.
         
         // reshuffling things a little
         inventory.set(1, new Apple(10, "red"));
         
-        // 4. ���� Method Reference
+        // 4.구현  Method Reference [simple is the best]
         // [Apple{color='red', weight=10}, Apple{color='red', weight=20}, Apple{color='green', weight=155}]
-
+        inventory.sort(comparing(Apple::getWeight)); 
     
     }
 
