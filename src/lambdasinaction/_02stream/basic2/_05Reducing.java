@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
+
+import lambdasinaction._02stream.basic1.Dish;
 
 
 public class _05Reducing {
@@ -11,16 +14,51 @@ public class _05Reducing {
     public static void main(String... args) {
         List<Integer> numbers = Arrays.asList(3, 4, 5, 1, 2);
     	
-        //reduce - - reduce¸¦ »ç¿ëÇÏ¿© sum À» ±¸ÇÏ´Â ¹æ¹ı
-
-        //reduce¸¦ »ç¿ëÇÏ¿© ÃÖ¼Ò°ª ±¸ÇÏ´Â ¹æ¹ı
-
-        //reduce¸¦ »ç¿ëÇÏ¿© ÃÖ´ë°ª ±¸ÇÏ´Â ¹æ¹ı
-
-        //Ä®·Î¸® ÇÕ°è¸¦ ±¸ÇÏ´Â ¿©·¯°¡Áö ¹æ¹ı
-
+        //reduce - - reduceë¥¼ ì‚¬ìš©í•˜ì—¬ sumì„ êµ¬í•˜ëŠ” ë°©ë²•
+        int sum1 = numbers.stream().reduce(0, (n1, n2) -> n1 + n2);
+        System.out.println(sum1);
+        int sum2 = numbers.stream().reduce(0, (n1, n2) -> Integer.sum(n1, n2));
+        System.out.println(sum2);
+        
+        //reduceë¥¼ ì‚¬ìš©í•˜ì—¬ ìµœì†Œê°’ êµ¬í•˜ê¸°
+        Optional<Integer> opt = numbers.stream().reduce(Integer::min);
+        //Ä®(n1,n2) -> Integer.min(n1,n2)
+        opt.ifPresent(System.out::println);
+        if(opt.isPresent()) {
+        	int min1 = opt.get();
+        	System.out.println(min1);
+        }
+        //reduceë¥¼ ì‚¬ìš©í•˜ì—¬ ìµœëŒ€ê°’ì„ êµ¬í•˜ëŠ” ë°©ë²•
+        
+        //ì¹¼ë¡œë¦¬ì˜ í•©ê³„ë¥¼ êµ¬í•˜ëŠ” ì—¬ëŸ¬ê°€ì§€ ë°©ë²•
+        //1. reduce í•¨ìˆ˜ ë‚´ë¶€ë¥¼ ì§ì ‘ êµ¬í˜„
+        int sumOfCalory = Dish.menu.stream()		//stream<Dish>
+        					.map(Dish::getCalories)
+        					.reduce(0, (prev, curr) -> prev + curr);
+        		
+        System.out.println(sumOfCalory);
+        //2. reduce í•¨ìˆ˜ ë‚´ë¶€ì—ì„œ Integer.sum() í˜¸ì¶œ
+        sumOfCalory = Dish.menu.stream()
+        				.map(dish -> dish.getCalories())
+        				.reduce(0, Integer::sum);
+        
+        //3. reduce() ëŒ€ì‹ ì— mapToInt()ë¥¼ ì‚¬ìš©í•´ì„œ Streamì„ IntStreamìœ¼ë¡œ ë³€í™˜
+        sumOfCalory = Dish.menu.stream()
+        				.mapToInt(Dish::getCalories)
+        				.sum();
+        
+        System.out.println(sumOfCalory);
+        
+        
+        
+        System.out.println(IntStream.rangeClosed(1, 100).summaryStatistics());
         
         
         
     }
+    
+    
+    
+    
+    
 }
