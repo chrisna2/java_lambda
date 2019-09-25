@@ -65,7 +65,7 @@ public class PuttingIntoPractice{
         transactions.stream()
         			.map(Transaction::getTrader)
         			.filter(tr -> tr.getCity().equals("Milan"))
-        			.forEach(tr -> tr.setCity("Cambridge"));
+        			.forEach(tr -> tr.setCity("Cambridge")); //원래는 안된다는 거였는데 값을 셋팅하는 것도 이제 됨.
         System.out.println("After ::"+transactions);
         
         // Query 7: What's the highest value in all the transactions?
