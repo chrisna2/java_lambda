@@ -3,6 +3,10 @@ package lambdasinaction._02stream.collect;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.stream.Collectors.*;
+import static java.util.Comparator.*;
+import static lambdasinaction._02stream.collect.Dish.menu;
+
 public class _05PartitioningDishes {
 
     public static void main(String ... args) {
@@ -13,7 +17,8 @@ public class _05PartitioningDishes {
 
     //1. 채식요리와 채식요리가 아닌 것으로 분류하기
     private static Map<Boolean, List<Dish>> partitionByVegeterian() {
-        return null;
+        return menu.stream()
+        		.collect(partitioningBy(Dish::isVegetarian));
     }
     //2. 채식요리와 채식요리가 아닌 것으로 분류한 다음 type별로 그룹핑 하기
     private static Map<Boolean, Map<Dish.Type, List<Dish>>> vegetarianDishesByType() {
