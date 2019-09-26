@@ -3,6 +3,7 @@ package lambdasinaction._02stream.collect;
 import static java.util.stream.Collectors.*;
 import static java.util.stream.Collectors.mapping;
 import static java.util.stream.Collectors.toSet;
+import static java.util.Comparator.*;
 import static lambdasinaction._02stream.collect.Dish.menu;
 
 import java.util.Comparator;
@@ -57,13 +58,19 @@ public class _04GroupingDishes {
     }
     //5.1 type별 그룹에서 가장 칼로리가 높은 Dish 찾기 - collectingAndThen() 사용
     private static Map<Dish.Type, Dish> mostCaloricDishesByTypeWithoutOptionals() {
-        return null;
+        return menu.stream().collect(groupingBy(Dish::getType, 
+        							 collectingAndThen(maxBy(comparing(Dish::getCalories)),
+        									           Optional<Dish>::get)
+        		                     ));
+        		
         		    
     }
 
     //6. type별로 그룹핑하여 칼로리의 합계 내기
     private static Map<Dish.Type, Integer> sumCaloriesByType() {
-        return null;
+        return menu.stream().collect(groupingBy(Dish::getType, 
+        										summingInt(dish -> dish.getCalories())
+        		));
     }
 
     private static Map<Dish.Type, Set<CaloricLevel>> caloricLevelsByType() {
