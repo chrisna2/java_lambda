@@ -28,21 +28,30 @@ public class _04GroupingDishes {
 
     //1. type별 그룹핑
     private static Map<Dish.Type, List<Dish>> groupDishesByType() {
-        return null;
+        return menu.stream().collect(groupingBy(Dish::getType));
     }
     //2. 칼로리별 그룹핑
     private static Map<CaloricLevel, List<Dish>> groupDishesByCaloricLevel() {
-        return null;
+        return menu.stream().collect(groupingBy(d -> {
+        								if(d.getCalories() <= 400) return CaloricLevel.DIET;
+        								else if (d.getCalories() <= 700) return CaloricLevel.NORMAL;
+        								else return CaloricLevel.FAT;
+        							}));
     }
     //3. type별로 그룹핑 후에 다시 칼로리별로 그룹핑
     private static Map<Dish.Type, Map<CaloricLevel, List<Dish>>> groupDishedByTypeAndCaloricLevel() {
-        return null;
+    	return menu.stream().collect(groupingBy(Dish::getType, groupingBy(d -> {
+																	if(d.getCalories() <= 400) return CaloricLevel.DIET;
+																	else if (d.getCalories() <= 700) return CaloricLevel.NORMAL;
+																	else return CaloricLevel.FAT;
+															   })
+    								 ));
     }
     //4. type별 갯수 카운팅
     private static Map<Dish.Type, Long> countDishesInGroups() {
-        return null;
+        return menu.stream().collect(groupingBy(Dish::getType,counting()));
     }
-    //5. type별 그룹에서 가장 칼로리가 높은 Dish 찾기
+    //5. type별 그룹에서 가장 칼로리가 높은 Dish 찾기 (reduce사용하면 됨)
     private static Map<Dish.Type, Optional<Dish>> mostCaloricDishesByType() {
         return null;
     }
