@@ -41,7 +41,8 @@ public class ParallelStreams {
     }
 
     public static class Accumulator {
-        private long total = 0;
+        //동시성 문제 발생
+    	private long total = 0;
 
         public void add(long value) {
             total += value;
